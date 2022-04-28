@@ -110,7 +110,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
+// Debug func extension
 extension View {
     func debug() -> Self {
         print(Mirror(reflecting: self).subjectType)
