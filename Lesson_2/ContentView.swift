@@ -9,8 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MyView()
+    }
+}
+
+
+struct MyView: View {
+    var body: some View {
+        Image("bro")
+            .resizable()
+            .ignoresSafeArea()
     }
 }
 
