@@ -42,9 +42,10 @@ struct TextExamplesScroll: View {
                     .foregroundColor(.cyan)
                     .border(.brown, width: 2)
                     .background(Color.mint)
-                VStack {
-                    HStack {
-                        Text("""
+                
+                HStack {
+                    TextBuilder {
+                    Text("""
                              For creating additional view use this scheme:
                              struct MyView: View {
                                  var body: some View {
@@ -53,12 +54,9 @@ struct TextExamplesScroll: View {
                                          .ignoresSafeArea(.all)
                                  }
                              """)
-                        .font(.system(size: 14))
-                        .frame(maxWidth: 300, maxHeight: 300)
-                        .foregroundColor(.red)
-                        .border(.cyan, width: 2)
-                        .padding()
-                        Text("""
+                    }
+                    TextBuilder {
+                    Text("""
                              For creating debug function make extension:
                              extension View {
                              func debug() -> Self {
@@ -67,16 +65,28 @@ struct TextExamplesScroll: View {
                                }
                              }
                              """)
-                        .font(.system(size: 14))
-                        .frame(maxWidth: 300, maxHeight: 300)
-                        .foregroundColor(.red)
-                        .border(.cyan, width: 2)
-                        .padding()
-                        
                     }
                 }
             }
         }
+    }
+}
+
+// View Builder
+struct TextBuilder: View {
+    var content: Text
+    
+    init(@ViewBuilder content: () -> Text) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        content
+            .font(.system(size: 14))
+            .frame(maxWidth: 300, maxHeight: 300)
+            .foregroundColor(.red)
+            .border(.cyan, width: 2)
+            .padding()
     }
 }
 
