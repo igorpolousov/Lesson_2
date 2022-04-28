@@ -9,21 +9,87 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MyView()
+        ZStack {
+            MyView()
+            TextExamplesScroll()
+        }
     }
 }
 
 
+// MyView Struct
 struct MyView: View {
     var body: some View {
+        Image("vinni1")
+            .resizable()
+            .ignoresSafeArea(.all)
+            .padding(.bottom, 400)
         Image("bro")
             .resizable()
-            .ignoresSafeArea()
+            .ignoresSafeArea(.all)
+            .padding(.top, 360)
     }
 }
+
+// Cells struct text with scroll view
+
+struct TextExamplesScroll: View {
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack {
+                Text("Lesson 2 Examples")
+                    .font(.largeTitle)
+                    .foregroundColor(.cyan)
+                    .border(.brown, width: 2)
+                    .background(Color.mint)
+                VStack {
+                    HStack {
+                        Text("""
+                             For creating additional view use this scheme:
+                             struct MyView: View {
+                                 var body: some View {
+                                     Image("garden")
+                                         .resizable()
+                                         .ignoresSafeArea(.all)
+                                 }
+                             """)
+                        .font(.system(size: 14))
+                        .frame(maxWidth: 300, maxHeight: 300)
+                        .foregroundColor(.red)
+                        .border(.cyan, width: 2)
+                        .padding()
+                        Text("""
+                             For creating debug function make extension:
+                             extension View {
+                             func debug() -> Self {
+                             print(Mirror(reflecting: self).subjectType)
+                             return self
+                               }
+                             }
+                             """)
+                        .font(.system(size: 14))
+                        .frame(maxWidth: 300, maxHeight: 300)
+                        .foregroundColor(.red)
+                        .border(.cyan, width: 2)
+                        .padding()
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+extension View {
+    func debug() -> Self {
+        print(Mirror(reflecting: self).subjectType)
+        return self
     }
 }
