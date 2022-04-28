@@ -42,7 +42,6 @@ struct TextExamplesScroll: View {
                     .foregroundColor(.cyan)
                     .border(.brown, width: 2)
                     .background(Color.mint)
-                
                 HStack {
                     TextBuilder {
                     Text("""
@@ -72,7 +71,22 @@ struct TextExamplesScroll: View {
     }
 }
 
-// View Builder
+// View Modifier - используется для создания однотипных view, например кнопок
+
+struct CircleShadow: ViewModifier {
+    let shadowColor: Color
+    let shadowRadius: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .background(Circle()
+                .fill(.white)
+                .shadow(color: .red, radius: shadowRadius)
+            )
+    }
+}
+
+// View Builder - готовй модификатор. Смысл почти такой же как и View Modifier. Только в VM требуется задавать параметры, а в VB параметры уже заданы и применяются сразу
 struct TextBuilder: View {
     var content: Text
     
